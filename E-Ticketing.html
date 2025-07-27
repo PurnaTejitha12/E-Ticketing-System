@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flight Booking System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f4f8;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: #007BFF;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        section {
+            display: none;
+            padding: 40px;
+            max-width: 500px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        section.active {
+            display: block;
+        }
+        form label {
+            display: block;
+            margin-top: 15px;
+        }
+        form input, form select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+        }
+        form input[type=submit] {
+            background: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        form input[type=submit]:hover {
+            background: #0056b3;
+        }
+    </style>
+    <script>
+        function showSection(id) {
+            const sections = document.querySelectorAll("section");
+            sections.forEach(s => s.classList.remove("active"));
+            document.getElementById(id).classList.add("active");
+        }
+
+        function goTo(nextId) {
+            showSection(nextId);
+            return false;
+        }
+
+        window.onload = () => showSection("login");
+    </script>
+</head>
+<body>
+<header>
+    <h1>Flight Booking System</h1>
+</header>
+<section id="login" class="active">
+    <h2>Login Form</h2>
+    <form onsubmit="return goTo('date')">
+        <label for="uname">Username:</label>
+        <input type="text" id="uname" name="uname" required>
+        <label for="psw">Password:</label>
+        <input type="password" id="psw" name="psw" required>
+        <input type="submit" value="Login">
+    </form>
+</section>
+<section id="date">
+    <h2>Select Date of Journey</h2>
+    <form onsubmit="return goTo('flight')">
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date">
+        <input type="submit" value="Submit">
+    </form>
+</section>
+<section id="flight">
+    <h2>Select Flight</h2>
+    <form onsubmit="return goTo('seat')">
+        <label for="flight">Choose a flight:</label>
+        <select id="flight" name="flight">
+            <option value="Indigo">Indigo</option>
+            <option value="SpiceJet">SpiceJet</option>
+            <option value="Air India">Air India</option>
+        </select>
+        <input type="submit" value="Continue">
+    </form>
+</section>
+<section id="seat">
+    <h2>Select Your Seat</h2>
+    <form onsubmit="return goTo('payment')">
+        <label for="seat">Choose seat type:</label>
+        <select id="seat" name="seat">
+            <option value="Window">Window</option>
+            <option value="Middle">Middle</option>
+            <option value="Aisle">Aisle</option>
+        </select>
+        <input type="submit" value="Continue to Payment">
+    </form>
+</section>
+<section id="payment">
+    <h2>Payment Details</h2>
+    <form onsubmit="return goTo('ticket')">
+        <label for="card">Card Number:</label>
+        <input type="text" id="card" name="card">
+        <label for="expiry">Expiry Date:</label>
+        <input type="month" id="expiry" name="expiry">
+        <label for="cvv">CVV:</label>
+        <input type="password" id="cvv" name="cvv">
+        <input type="submit" value="Pay">
+    </form>
+</section>
+<section id="ticket">
+    <h2>Your Ticket</h2>
+    <p>Thank you for booking your flight ticket with us!</p>
+</section>
+</body>
+</html>
